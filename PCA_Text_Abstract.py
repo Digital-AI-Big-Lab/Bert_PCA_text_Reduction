@@ -39,23 +39,24 @@ for i in range(len(text)):
     eigenvalues = pca.explained_variance_
     eigenvalues_sum = eigenvalues.sum()
     # print(eigenvalues/eigenvalues_sum)
-    # 計算每個句子的主成分得分，根據解釋變異量進行加權
+    # 計算每個句子的PCA score，根據解釋變異量進行加權
     explained_variance = pca.explained_variance_ratio_
     # print(explained_variance)
     sentence_scores = np.dot(sentence_embeddings_reduced, explained_variance)
     # print(sentence_scores)
-    # 根據分數選擇前三個句子
+    # 根據PCA score選擇前三個句子
     top_sentence_indices = np.argsort(sentence_scores)[-3:]
     summary = "".join([sentences[j] for j in top_sentence_indices]) + "。"
     print("Summary:", summary)
     print("after summary length:", len(summary))
+
 #Result
 #original length: 796
-@Summary: 在現代社會中，科技的快速發展正在以前所未有的速度改變著我們的生活方式只有這樣，我們才能在快速變遷的科技時代中，保持清醒的頭腦，真正享受科技進步帶來的紅利面對科技發展帶來的挑戰，我們必須學會如何有效地管理和利用科技資源。
-after summary length: 109
-original length: 203
-Summary: 而能否成功的關鍵，在於企業能否有效運用四大核心策略：TWQR在這個快速變遷的數位時代，每一個組織都在尋找如何在市場上取得競爭優勢的秘訣它們不僅影響企業的發展方向，更是現代社會中每個個人和團隊應當牢牢掌握的理念。
-after summary length: 105
+#Summary: 在現代社會中，科技的快速發展正在以前所未有的速度改變著我們的生活方式只有這樣，我們才能在快速變遷的科技時代中，保持清醒的頭腦，真正享受科技進步帶來的紅利面對科技發展帶來的挑戰，我們必須學會如何有效地管理和利用科技資源。
+#after summary length: 109
+#original length: 203
+#Summary: 而能否成功的關鍵，在於企業能否有效運用四大核心策略：TWQR在這個快速變遷的數位時代，每一個組織都在尋找如何在市場上取得競爭優勢的秘訣它們不僅影響企業的發展方向，更是現代社會中每個個人和團隊應當牢牢掌握的理念。
+#after summary length: 105
 
 
 
